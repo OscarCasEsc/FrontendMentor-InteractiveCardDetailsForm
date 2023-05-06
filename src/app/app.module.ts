@@ -2,10 +2,16 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
+import { CardFrontComponent } from './card-front/card-front.component';
+import { CardBackComponent } from './card-back/card-back.component';
+import { CardFormComponent } from './card-form/card-form.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CardFrontComponent,
+    CardBackComponent,
+    CardFormComponent
   ],
   imports: [
     BrowserModule
