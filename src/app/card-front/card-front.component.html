@@ -1,1 +1,16 @@
-<p>card-front works!</p>
+<div class="card-front">
+    <div class="card-front-number">
+        {{cardNumber}}
+    </div>
+    <div class="card-front-name-expiration">
+        <div class="name">
+            {{name | uppercase}}
+        </div>
+        <div class="expiration">
+            {{expiration}}
+        </div>
+    </div>
+
+    <img class="card-front-logo" src="../../assets/card-logo.svg" alt="card logo">
+    <img class="card-front-img" src="./../../assets/bg-card-front.png" alt="card front">
+</div>

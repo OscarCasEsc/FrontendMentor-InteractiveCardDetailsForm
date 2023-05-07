@@ -1,0 +1,31 @@
+@import 'colors';
+.card-front {
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    .card-front-logo {
+        position:absolute;
+        top:20px;
+        left:20px;
+    }
+    .card-front-img {
+        width: 350px;
+    }
+    .card-front-name-expiration {
+        position: absolute;
+        top: 70%;
+        color: $color-white;
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        margin: 0 20px;
+    }
+    .card-front-number {
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        margin: 0 20px;
+        color: $color-white;
+        font-size: 23px;
+    }
+}
