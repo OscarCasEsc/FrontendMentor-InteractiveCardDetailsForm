@@ -1,1 +1,37 @@
-<p>card-form works!</p>
+<form [formGroup]="form">
+    <div class="form-group">
+        <div class="group-title">CARDHOLDER NAME</div>
+        <input type="" placeholder="e.g. Jane Appleseed" formControlName="cardName" />
+        <div class="error-msg" *ngIf="showErrorMsg('cardName')">
+            Can't be blank
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="group-title">CARD NUMBER</div>
+        <input type="" placeholder="e.g. 1234 5678 9123 0000" formControlName="cardNumber" />
+        <div class="error-msg" *ngIf="showErrorMsg('cardNumber')">
+            Can't be blank
+        </div>
+    </div>
+    <div class="wrap-verification">
+        <div class="form-group">
+            <div class="group-title">EXP. DATE (MM/YY)</div>
+            <div class="expiration-date">
+                <input type="number" placeholder="MM" formControlName="expMonth" />
+                <input type="number" placeholder="YY" formControlName="expYear" />
+            </div>
+            <div class="error-msg" *ngIf="showErrorMsg('expMonth', 'expYear')">
+                Can't be Blank
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="group-title">CVC</div>
+            <input type="number" placeholder="123" formControlName="cvc" min="1" max="999" />
+            <div class="error-msg" *ngIf="showErrorMsg('cvc')">
+                Can't be Blank
+            </div>
+        </div>
+    </div>
+    {{form.valid}}
+    <button>Confirm</button>
+</form>
