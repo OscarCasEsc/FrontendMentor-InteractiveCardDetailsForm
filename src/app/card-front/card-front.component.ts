@@ -1,12 +1,33 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { CardService } from '../card.service';
+import { FormChange } from '../core/models/formChange.model';
 
 @Component({
   selector: 'app-card-front',
   templateUrl: './card-front.component.html',
   styleUrls: ['./card-front.component.scss'],
 })
-export class CardFrontComponent {
-  @Input() name: string = 'Oscar Castro Escobar';
-  @Input() cardNumber: string = '4482 4565 1435 4844';
-  @Input() expiration: string = '02/23';
+export class CardFrontComponent implements OnInit {
+  name: string;
+  number: string[];
+  expiration: string;
+  constructor(public cardService: CardService) {
+    this.name = '';
+    this.number = [];
+    this.expiration = '';
+  }
+  ngOnInit(): void {
+    this.cardService.getForm$().subscribe((form: FormChange) => {
+      const { name, number, expiration } = form;
+      console.log(expiration);
+      if (name || name == '') {
+        this.name = name;
+      } else if (number || number == '') {
+        this.number = [];
+        number.split(' ').forEach((chunk) => this.number.push(chunk));
+      } else if (expiration || expiration == '') {
+        this.expiration = expiration;
+      }
+    });
+  }
 }

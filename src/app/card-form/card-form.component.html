@@ -1,37 +1,60 @@
 <form [formGroup]="form">
     <div class="form-group">
         <div class="group-title">CARDHOLDER NAME</div>
-        <input type="" placeholder="e.g. Jane Appleseed" formControlName="cardName" />
-        <div class="error-msg" *ngIf="showErrorMsg('cardName')">
+        <input [ngClass]="{'input-error':showErrorMsg('name')}" type="" placeholder="e.g. Jane Appleseed"
+            formControlName="name" (keyup)="nameChange()" />
+        <div class="error-msg" *ngIf="showErrorMsg('name')">
             Can't be blank
         </div>
     </div>
     <div class="form-group">
         <div class="group-title">CARD NUMBER</div>
-        <input type="" placeholder="e.g. 1234 5678 9123 0000" formControlName="cardNumber" />
-        <div class="error-msg" *ngIf="showErrorMsg('cardNumber')">
-            Can't be blank
+        <input [ngClass]="{'input-error': showErrorMsg('number')}" type="text" placeholder="e.g. 1234 5678 9123 0000"
+            formControlName="number" (keyup)="numberChange()" />
+        <div class="error-msg" *ngIf="showErrorMsg('number')">
+            <div *ngIf="form.controls['number'].errors?.['required']">
+                Can't be blank
+            </div>
+            <div *ngIf="form.controls['number'].errors?.['pattern']">
+                Wrong format
+            </div>
         </div>
     </div>
     <div class="wrap-verification">
         <div class="form-group">
             <div class="group-title">EXP. DATE (MM/YY)</div>
             <div class="expiration-date">
-                <input type="number" placeholder="MM" formControlName="expMonth" />
-                <input type="number" placeholder="YY" formControlName="expYear" />
+                <input [ngClass]="{'input-error':showErrorMsg('expMonth')}" type="number" placeholder="MM"
+                    formControlName="expMonth" (keyup)="expirationChange()" />
+                <input [ngClass]="{'input-error':showErrorMsg('expYear')}" type="number" placeholder="YY"
+                    formControlName="expYear" (keyup)="expirationChange()" />
             </div>
             <div class="error-msg" *ngIf="showErrorMsg('expMonth', 'expYear')">
-                Can't be Blank
+                <div
+                    *ngIf="form.controls['expMonth'].errors?.['required'] || form.controls['expYear'].errors?.['required']">
+                    Can't be blank
+                </div>
+                <div *ngIf="form.controls['expMonth'].errors?.['max'] || form.controls['expMonth'].errors?.['min']">
+                    Not valid expiration month
+                </div>
+                <div *ngIf="form.controls['expYear'].errors?.['max'] || form.controls['expYear'].errors?.['min']">
+                    Not valid expiration year
+                </div>
             </div>
         </div>
         <div class="form-group">
             <div class="group-title">CVC</div>
-            <input type="number" placeholder="123" formControlName="cvc" min="1" max="999" />
+            <input [ngClass]="{'input-error':showErrorMsg('cvc')}" type="number" placeholder="123" formControlName="cvc"
+                (keyup)="cvcChange()" />
             <div class="error-msg" *ngIf="showErrorMsg('cvc')">
-                Can't be Blank
+                <div *ngIf="form.controls['cvc'].errors?.['required']">
+                    Can't be blank
+                </div>
+                <div *ngIf="form.controls['cvc'].errors?.['max']||form.controls['cvc'].errors?.['min']">
+                    Not valid CVC
+                </div>
             </div>
         </div>
     </div>
-    {{form.valid}}
-    <button>Confirm</button>
+    <button [disabled]="!form.valid">Confirm</button>
 </form>

@@ -1,6 +1,8 @@
 <div class="card-front">
     <div class="card-front-number">
-        {{cardNumber}}
+        <div *ngFor="let chuckNumber of number">
+            {{chuckNumber}}
+        </div>
     </div>
     <div class="card-front-name-expiration">
         <div class="name">
