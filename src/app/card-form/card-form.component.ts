@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { CardService } from '../card.service';
 
 @Component({
   selector: 'app-card-form',
@@ -8,16 +9,28 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class CardFormComponent {
   form!: FormGroup;
-  constructor() {
+  constructor(private cardSevice: CardService) {
     this.form = new FormGroup({
-      cardName: new FormControl('', Validators.required),
-      cardNumber: new FormControl('', [
+      name: new FormControl('', Validators.required),
+      number: new FormControl('', [
         Validators.required,
-        Validators.pattern('[0-9]*'),
+        Validators.pattern('([0-9]{4}\\s){3}[0-9]{4}'),
       ]),
-      expMonth: new FormControl('', Validators.required),
-      expYear: new FormControl('', Validators.required),
-      cvc: new FormControl('', Validators.required),
+      expMonth: new FormControl('', [
+        Validators.required,
+        Validators.min(1),
+        Validators.max(12),
+      ]),
+      expYear: new FormControl('', [
+        Validators.required,
+        Validators.min(23),
+        Validators.max(99),
+      ]),
+      cvc: new FormControl('', [
+        Validators.required,
+        Validators.min(100),
+        Validators.max(999),
+      ]),
     });
   }
 
@@ -37,5 +50,42 @@ export class CardFormComponent {
         (this.form.controls[formName2].dirty ||
           this.form.controls[formName2].touched))
     );
+  }
+
+  nameChange() {
+    this.cardSevice.setFormValue({ name: this.form.controls['name'].value });
+  }
+  numberChange() {
+    this.cardSevice.setFormValue({
+      number: this.form.controls['number'].value,
+    });
+  }
+
+  cvcChange() {
+    this.cardSevice.setFormValue({ cvc: this.form.controls['cvc'].value });
+  }
+  expirationChange() {
+    const expMonth = this.form.controls['expMonth'].value;
+    const expYear = this.form.controls['expYear'].value;
+    console.log('variables', expMonth, expYear);
+    if (expMonth && expYear && expMonth == '' && expYear == '') {
+      this.cardSevice.setFormValue({ expiration: '' });
+    } else if (expMonth && expYear && expMonth != '' && expYear != '') {
+      this.cardSevice.setFormValue({ expiration: `${expMonth}/${expYear}` });
+    } else {
+      this.cardSevice.setFormValue({
+        expiration: `${expMonth != null ? expMonth : ''}${
+          expYear != null ? expYear : ''
+        }`,
+      });
+    }
+  }
+
+  getExpMonth() {
+    this.form.controls['expMonth'];
+  }
+
+  getExpYear() {
+    this.form.controls['expYear'];
   }
 }

@@ -1,0 +1,17 @@
+@import 'colors';
+.card-back{
+    position: absolute;
+    top:50%;
+    left: calc(350px / 2);
+    width: 350px;
+    .card-back-cvc {
+        position: absolute;
+        top: 87px;
+        right: 40px;
+        color: $color-white;
+        font-size:12px;
+    }
+    .card-back-img {
+      width: 100%;  
+    }
+}
