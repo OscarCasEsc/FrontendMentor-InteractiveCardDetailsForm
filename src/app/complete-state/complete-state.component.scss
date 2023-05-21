@@ -1,0 +1,21 @@
+@import 'colors';
+.complete-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    img {
+        width: 3rem;
+        margin-bottom: 1.5rem;
+    }
+    .title {
+        color: $color-very-dark-violet;
+        font-weight: 500;
+        font-size: 1.5rem;
+        letter-spacing: 0.3rem;
+        margin-bottom: 1rem;
+    }
+    .subtitle {
+        color: $color-dark-grayish-violet;
+        font-weight: 400;
+    }
+}
