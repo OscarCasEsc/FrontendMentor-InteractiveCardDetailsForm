@@ -15,7 +15,10 @@
             <div *ngIf="form.controls['number'].errors?.['required']">
                 Can't be blank
             </div>
-            <div *ngIf="form.controls['number'].errors?.['pattern']">
+            <div *ngIf="form.controls['number'].errors?.['noLetters']">
+                Can't contains letters
+            </div>
+            <div *ngIf="form.controls['number'].errors?.['pattern'] && !form.controls['number'].errors?.['noLetters'] ">
                 Wrong format
             </div>
         </div>

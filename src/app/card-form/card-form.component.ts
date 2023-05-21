@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CardService } from '../card.service';
+import { noLettersValidator } from '../core/validators/noContainsLetters.validator';
 
 @Component({
   selector: 'app-card-form',
@@ -14,6 +15,7 @@ export class CardFormComponent {
       name: new FormControl('', Validators.required),
       number: new FormControl('', [
         Validators.required,
+        noLettersValidator(),
         Validators.pattern('([0-9]{4}\\s){3}[0-9]{4}'),
       ]),
       expMonth: new FormControl('', [
