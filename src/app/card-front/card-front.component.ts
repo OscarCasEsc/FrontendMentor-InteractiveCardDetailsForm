@@ -12,9 +12,9 @@ export class CardFrontComponent implements OnInit {
   number: string[];
   expiration: string;
   constructor(public cardService: CardService) {
-    this.name = '';
-    this.number = [];
-    this.expiration = '';
+    this.name = 'Jane Appleseed';
+    this.number = ['0000', '0000', '0000', '0000'];
+    this.expiration = '00/00';
   }
   ngOnInit(): void {
     this.cardService.getForm$().subscribe((form: FormChange) => {
