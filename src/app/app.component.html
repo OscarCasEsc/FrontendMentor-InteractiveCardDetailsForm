@@ -4,6 +4,7 @@
         <app-card-back></app-card-back>
     </div>
     <div class="second-section">
-        <app-card-form></app-card-form>
+        <app-card-form *ngIf="!showCompleteState" (showCompleteState)="activeShowCompleteState()"></app-card-form>
+        <app-complete-state *ngIf="showCompleteState"></app-complete-state>
     </div>
 </div>

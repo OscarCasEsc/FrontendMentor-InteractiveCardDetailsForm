@@ -6,6 +6,7 @@ import { CardFrontComponent } from './card-front/card-front.component';
 import { CardBackComponent } from './card-back/card-back.component';
 import { CardFormComponent } from './card-form/card-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CompleteStateComponent } from './complete-state/complete-state.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     CardFrontComponent,
     CardBackComponent,
     CardFormComponent,
+    CompleteStateComponent,
   ],
   imports: [BrowserModule, ReactiveFormsModule],
   providers: [],

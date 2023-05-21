@@ -1,4 +1,4 @@
-<form [formGroup]="form">
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="form-group">
         <div class="group-title">CARDHOLDER NAME</div>
         <input [ngClass]="{'input-error':showErrorMsg('name')}" type="" placeholder="e.g. Jane Appleseed"

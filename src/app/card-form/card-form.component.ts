@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CardService } from '../card.service';
 import { noLettersValidator } from '../core/validators/noContainsLetters.validator';
@@ -10,6 +10,8 @@ import { noLettersValidator } from '../core/validators/noContainsLetters.validat
 })
 export class CardFormComponent {
   form!: FormGroup;
+  @Output() showCompleteState = new EventEmitter<boolean>();
+
   constructor(private cardSevice: CardService) {
     this.form = new FormGroup({
       name: new FormControl('', Validators.required),
@@ -89,5 +91,11 @@ export class CardFormComponent {
 
   getExpYear() {
     this.form.controls['expYear'];
+  }
+
+  onSubmit() {
+    if (this.form.valid) {
+      this.showCompleteState.emit(true);
+    }
   }
 }
