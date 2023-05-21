@@ -4,12 +4,16 @@
     width: 100vw;
     .first-section {
         background-image: url('./../assets/bg-main-desktop.png');
-        width: 350px;
+        width: 20%;
+        max-width: 370px;
+        min-width: 215px;
+        position: relative;
     }
     .second-section {
         display: flex;
         justify-content: center;
         align-items: center;
-        width: calc(100% - 350px);
+        width: 80%;
+        min-width: 815px;
     }
 }
